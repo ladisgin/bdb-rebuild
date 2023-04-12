@@ -14,7 +14,7 @@ int main() {
     nlohmann::json lc_data = nlohmann::json::parse(lc);
     std::ofstream os("Makefile");
 
-    MakeFileWriter mfw("Makefile");
+    MakeFileWriter mfw("Makefile", std::filesystem::current_path());
 
     for (const auto &i: cc_data) {
         mfw.addTarget(i);
