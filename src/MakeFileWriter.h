@@ -40,8 +40,6 @@ public:
 
     [[nodiscard]] std::string getDirectoryWithAbsPath() const;
 
-//    [[nodiscard]] std::string getCommandWithAbsPath() const;
-
     [[nodiscard]] std::vector<std::string> getDependenciesWithAbsPath() const;
 };
 

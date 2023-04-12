@@ -111,10 +111,6 @@ std::string MakeFileTarget::getTargetWithAbsPath() const {
     return getAbsPath(target, getDirectoryWithAbsPath());
 }
 
-//std::string MakeFileTarget::getCommandWithAbsPath() const {
-//    return getAbsPath(command, getDirectoryWithAbsPath());
-//}
-
 std::vector<std::string> MakeFileTarget::getDependenciesWithAbsPath() const {
     std::vector<std::string> dependenciesCopy(dependencies.size());
     std::transform(dependencies.begin(), dependencies.end(),
