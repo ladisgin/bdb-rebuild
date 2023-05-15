@@ -44,7 +44,7 @@ MakeFileTarget::MakeFileTarget(const nlohmann::json &entry, std::filesystem::pat
             }
             target = output_pos == std::string::npos ?
                      command.substr(output_pos) : command.substr(output_pos, end_pos - output_pos);
-        } else if (bin.find("ar") != std::string::npos) {
+        } else if (bin.find("ar") != std::string::npos || bin.find("ranlib") != std::string::npos) {
             size_t start = command.find(' ');
             size_t end;
             while (start != std::string::npos) {
@@ -57,15 +57,12 @@ MakeFileTarget::MakeFileTarget(const nlohmann::json &entry, std::filesystem::pat
                 start = end;
             }
         } else {
-            throw std::exception();
+            throw std::exception(std::runtime_error(bin));
         }
     }
 
     auto file_it = entry.find("file");
     auto files_it = entry.find("files");
-    if (file_it == entry.end() && files_it == entry.end()) {
-        throw std::exception();
-    }
     if (file_it != entry.end()) {
         dependencies.push_back(*file_it);
     }
